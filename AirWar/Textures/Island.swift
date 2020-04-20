@@ -22,8 +22,8 @@ class Island: SKSpriteNode {
     }
     
     private static func move(to point: CGPoint) -> SKAction {
-        let movePoint = CGPoint(x: point.x, y: point.y - 200)
-        let moveDistance: CGFloat = point.y + 200
+        let movePoint = CGPoint(x: point.x, y: point.y - 400)
+        let moveDistance: CGFloat = point.y + 400
         let speed : CGFloat = 15.0
         let duration = moveDistance / speed
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))
