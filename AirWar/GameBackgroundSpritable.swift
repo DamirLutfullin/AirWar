@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 protocol GameBackgroundSpritable {
-    static func getSprite() -> Self
+    static func getSprite(at point: CGPoint?) -> Self
     static func randomPoint() -> CGPoint
 }
 
