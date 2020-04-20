@@ -18,6 +18,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         configureStartScene()
+        backGroundGenerate(object: Cloud.self, pause: 3)
+        backGroundGenerate(object: Island.self, pause: 3)
     }
     
     func configureStartScene() {
@@ -47,14 +49,33 @@ class GameScene: SKScene {
         }
     }
     
-    override func didSimulatePhysics() {
-        super.didSimulatePhysics()
-        player.position.x = self.xAcceleration * 50
-
-        if player.position.x < -70 {
-            player.position.x = self.size.width + 70
-        } else if player.position.x > self.size.width + 70 {
-            player.position.x = -70
+    func backGroundGenerate(object: GameBackgroundSpritable.Type, pause: Int) {
+        
+        let pause = SKAction.wait(forDuration: TimeInterval(pause))
+        let spawnObjects = SKAction.run {
+            if object is Cloud.Type {
+                let cloud = object as! Cloud.Type
+                self.addChild(cloud.getSprite())
+            } else if object is Island.Type {
+                let island = object as! Island.Type
+                self.addChild(island.getSprite())
+            }
         }
+        
+        let spawnSequence = SKAction.sequence([pause, spawnObjects])
+        let spawnSequenceForever = SKAction.repeatForever(spawnSequence)
+        run(spawnSequenceForever)
+        
     }
+    
+//    override func didSimulatePhysics() {
+//        super.didSimulatePhysics()
+//        player.position.x = self.xAcceleration * 50
+//
+//        if player.position.x < -70 {
+//            player.position.x = self.size.width + 70
+//        } else if player.position.x > self.size.width + 70 {
+//            player.position.x = -70
+//        }
+//    }
 }

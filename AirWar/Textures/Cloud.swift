@@ -17,7 +17,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         cloud.setScale(CGFloat.random(in: 2...3))
         cloud.zPosition = 10
         cloud.position = randomPoint()
-        cloud.run(move(to: randomPoint()))
+        cloud.run(move(to: cloud.position))
         return cloud
     }
     

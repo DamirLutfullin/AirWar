@@ -16,7 +16,7 @@ final class Island: SKSpriteNode, GameBackgroundSpritable {
         island.zRotation = CGFloat.random(in: 0 ... 2 * CGFloat.pi)
         island.position = randomPoint()
         island.zPosition = 1
-        island.run(move(to: randomPoint()))
+        island.run(move(to: island.position))
         return island
     }
     
