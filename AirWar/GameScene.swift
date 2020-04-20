@@ -24,8 +24,10 @@ class GameScene: SKScene {
             let y = CGFloat.random(in: 0...screen.size.height)
             
             let island = Island.getIsland(at: CGPoint(x: x, y: y))
+            let cloud = Cloud.getCloud(at: CGPoint(x: x, y: y))
             
             self.addChild(island)
+            self.addChild(cloud)
         }
         
     }
