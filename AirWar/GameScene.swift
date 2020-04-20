@@ -13,10 +13,20 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        let sprite = SKSpriteNode(color: .green, size: self.size)
+        let background = Background.background(at: self.anchorPoint)
+        background.size = self.size
+        self.addChild(background)
         
-        self.addChild(sprite)
+        let screen = UIScreen.main.bounds
         
-
+        for _ in 0...5 {
+            let x = CGFloat.random(in: 0...screen.size.width)
+            let y = CGFloat.random(in: 0...screen.size.height)
+            
+            let island = Island.getIsland(at: CGPoint(x: x, y: y))
+            
+            self.addChild(island)
+        }
+        
     }
 }
