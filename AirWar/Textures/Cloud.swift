@@ -10,9 +10,18 @@
 import SpriteKit
 import GameplayKit
 
-class Cloud: SKSpriteNode {
+final class Cloud: SKSpriteNode, GameBackgroundSpritable {
     
-    static func getCloud(at point: CGPoint) -> Cloud {
+    static func getSprite() -> Cloud {
+        let cloud = Cloud(imageNamed: "cl" + String(Int.random(in: 1...3)))
+        cloud.setScale(CGFloat.random(in: 2...3))
+        cloud.zPosition = 10
+        cloud.position = randomPoint()
+        cloud.run(move(to: randomPoint()))
+        return cloud
+    }
+    
+    static func getSprite(at point: CGPoint) -> Cloud {
         let cloud = Cloud(imageNamed: "cl" + String(Int.random(in: 1...3)))
         cloud.setScale(CGFloat.random(in: 2...3))
         cloud.position = point
@@ -22,10 +31,10 @@ class Cloud: SKSpriteNode {
     }
     
     private static func move(to point: CGPoint) -> SKAction {
-        let movePoint = CGPoint(x: point.x, y: point.y - 400)
-        let moveDistance: CGFloat = point.y + 400
-        let speed : CGFloat = 20.0
+        let movePoint = CGPoint(x: point.x, y: -200)
+        let moveDistance: CGFloat = point.y + 200
+        let speed : CGFloat = 150.0
         let duration = moveDistance / speed
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))
-       }
+    }
 }

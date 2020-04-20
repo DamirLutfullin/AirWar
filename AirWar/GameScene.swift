@@ -17,28 +17,28 @@ class GameScene: SKScene {
     var xAcceleration: CGFloat = 0
     
     override func didMove(to view: SKView) {
-        
+        configureStartScene()
+    }
+    
+    func configureStartScene() {
         let background = Background.background(at: self.anchorPoint)
         background.size = self.size
         self.addChild(background)
         
         let screen = UIScreen.main.bounds
         
-        for _ in 0...5 {
-            let x = CGFloat.random(in: 0...screen.size.width)
-            let y = CGFloat.random(in: 0...screen.size.height)
-            
-            let island = Island.getIsland(at: CGPoint(x: x, y: y))
-            let cloud = Cloud.getCloud(at: CGPoint(x: x, y: y))
-            
-            self.addChild(island)
-            self.addChild(cloud)
-        }
+        let island1 = Island.getSprite(at: CGPoint(x: 100, y: 200))
+        self.addChild(island1)
+        
+        
+        let island2 = Island.getSprite(at: CGPoint(x: self.size.width - 100, y: self.size.height - 200))
+        self.addChild(island2)
+        
         
         player = PayerPlane.getPlain(at: CGPoint(x: screen.width / 2, y: 100))
         self.addChild(player)
         
-        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.accelerometerUpdateInterval = 0.5
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let data = data {
                 let acceleration = data.acceleration
@@ -50,7 +50,7 @@ class GameScene: SKScene {
     override func didSimulatePhysics() {
         super.didSimulatePhysics()
         player.position.x = self.xAcceleration * 50
-        
+
         if player.position.x < -70 {
             player.position.x = self.size.width + 70
         } else if player.position.x > self.size.width + 70 {
