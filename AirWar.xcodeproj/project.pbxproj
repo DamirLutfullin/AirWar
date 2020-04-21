@@ -12,6 +12,8 @@
 		1900E9FD244DC69600EDCC99 /* PlayerPlane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1900E9FC244DC69600EDCC99 /* PlayerPlane.atlas */; };
 		1900E9FF244DC97100EDCC99 /* PayerPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900E9FE244DC97100EDCC99 /* PayerPlane.swift */; };
 		19388B5C244DE6270072CB4E /* GameBackgroundSpritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */; };
+		19C99286244FA2C900E8A397 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */; };
+		19C99288244FA2F300E8A397 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C99287244FA2F300E8A397 /* PowerUp.swift */; };
 		19D024C0244B273D007A5CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D024BF244B273D007A5CD6 /* AppDelegate.swift */; };
 		19D024C6244B273D007A5CD6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D024C5244B273D007A5CD6 /* GameScene.swift */; };
 		19D024C8244B273D007A5CD6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D024C7244B273D007A5CD6 /* GameViewController.swift */; };
@@ -27,6 +29,8 @@
 		1900E9FC244DC69600EDCC99 /* PlayerPlane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PlayerPlane.atlas; sourceTree = "<group>"; };
 		1900E9FE244DC97100EDCC99 /* PayerPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerPlane.swift; sourceTree = "<group>"; };
 		19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundSpritable.swift; sourceTree = "<group>"; };
+		19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
+		19C99287244FA2F300E8A397 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		19D024BC244B273D007A5CD6 /* AirWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D024BF244B273D007A5CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D024C5244B273D007A5CD6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 		1900EA00244DC9EF00EDCC99 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				19C99287244FA2F300E8A397 /* PowerUp.swift */,
 				19D024D7244CE9BF007A5CD6 /* Background.swift */,
 				1900E9F8244D9ECA00EDCC99 /* Island.swift */,
 				1900E9FA244DB8F100EDCC99 /* Cloud.swift */,
@@ -87,6 +92,7 @@
 				19D024C9244B273D007A5CD6 /* Main.storyboard */,
 				19D024CC244B2740007A5CD6 /* Assets.xcassets */,
 				1900E9FC244DC69600EDCC99 /* PlayerPlane.atlas */,
+				19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */,
 				19D024CE244B2740007A5CD6 /* LaunchScreen.storyboard */,
 				19D024D1244B2740007A5CD6 /* Info.plist */,
 			);
@@ -152,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D024CB244B273D007A5CD6 /* Main.storyboard in Resources */,
+				19C99286244FA2C900E8A397 /* GreenPowerUp.atlas in Resources */,
 				1900E9FD244DC69600EDCC99 /* PlayerPlane.atlas in Resources */,
 				19D024CD244B2740007A5CD6 /* Assets.xcassets in Resources */,
 				19D024D0244B2740007A5CD6 /* LaunchScreen.storyboard in Resources */,
@@ -167,6 +174,7 @@
 			files = (
 				19D024C6244B273D007A5CD6 /* GameScene.swift in Sources */,
 				1900E9FB244DB8F100EDCC99 /* Cloud.swift in Sources */,
+				19C99288244FA2F300E8A397 /* PowerUp.swift in Sources */,
 				19D024C8244B273D007A5CD6 /* GameViewController.swift in Sources */,
 				19D024C0244B273D007A5CD6 /* AppDelegate.swift in Sources */,
 				1900E9F9244D9ECA00EDCC99 /* Island.swift in Sources */,

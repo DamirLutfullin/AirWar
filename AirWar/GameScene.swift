@@ -12,12 +12,18 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player: PayerPlane!
+    let powerUp = PowerUp()
    
     override func didMove(to view: SKView) {
         configureStartScene()
         backGroundGenerate(object: Cloud.self, pause: 3)
         backGroundGenerate(object: Island.self, pause: 2)
         player.performFly()
+        
+        powerUp.performRotation()
+        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.addChild(powerUp)
+        
     }
     
     func configureStartScene() {

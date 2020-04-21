@@ -99,12 +99,12 @@ class PayerPlane: SKSpriteNode {
     }
     
     private func movementDirectionCheck() {
-        if xAcceleration > 0.1, moveDirection != .right, stillTurning == false {
+        if xAcceleration > 0.02, moveDirection != .right, stillTurning == false {
             stillTurning = true
             moveDirection = .right
             
             
-        } else if xAcceleration < 0.1, moveDirection != .letf, stillTurning == false {
+        } else if xAcceleration < 0.02, moveDirection != .letf, stillTurning == false {
             stillTurning = true
             moveDirection = .letf
             
