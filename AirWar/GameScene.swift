@@ -26,7 +26,6 @@ class GameScene: SKScene {
         self.addChild(background)
         player = PayerPlane.getSprite()
         self.addChild(player)
-        
     }
     
     func backGroundGenerate(object: GameBackgroundSpritable.Type, pause: Int) {
@@ -45,7 +44,6 @@ class GameScene: SKScene {
         let spawnSequence = SKAction.sequence([pause, spawnObjects])
         let spawnSequenceForever = SKAction.repeatForever(spawnSequence)
         run(spawnSequenceForever)
-        
     }
     
     override func didSimulatePhysics() {
