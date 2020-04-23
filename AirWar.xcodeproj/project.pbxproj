@@ -25,6 +25,8 @@
 		19D024CD244B2740007A5CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D024CC244B2740007A5CD6 /* Assets.xcassets */; };
 		19D024D0244B2740007A5CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D024CE244B2740007A5CD6 /* LaunchScreen.storyboard */; };
 		19D024D8244CE9BF007A5CD6 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D024D7244CE9BF007A5CD6 /* Background.swift */; };
+		19ED47DF2452179000706A53 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED47DE2452179000706A53 /* Shot.swift */; };
+		19F8F687245213690028331D /* YellowAmmo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19F8F686245213690028331D /* YellowAmmo.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		19D024CF244B2740007A5CD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19D024D1244B2740007A5CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19D024D7244CE9BF007A5CD6 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		19ED47DE2452179000706A53 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+		19F8F686245213690028331D /* YellowAmmo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = YellowAmmo.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				1900E9FA244DB8F100EDCC99 /* Cloud.swift */,
 				1900E9F8244D9ECA00EDCC99 /* Island.swift */,
 				19D024D7244CE9BF007A5CD6 /* Background.swift */,
+				19ED47DE2452179000706A53 /* Shot.swift */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
@@ -100,15 +105,24 @@
 				19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */,
 				19D024C9244B273D007A5CD6 /* Main.storyboard */,
 				19D024CC244B2740007A5CD6 /* Assets.xcassets */,
+				19F8F6882452141A0028331D /* Atlases */,
+				19D024CE244B2740007A5CD6 /* LaunchScreen.storyboard */,
+				19D024D1244B2740007A5CD6 /* Info.plist */,
+			);
+			path = AirWar;
+			sourceTree = "<group>";
+		};
+		19F8F6882452141A0028331D /* Atlases */ = {
+			isa = PBXGroup;
+			children = (
 				1900E9FC244DC69600EDCC99 /* PlayerPlane.atlas */,
 				19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */,
 				194933A92451E5C100FFCB7F /* BluePowerUp.atlas */,
 				19A26A8C2450D7600018B870 /* Enemy_1.atlas */,
 				194933A72451D17C00FFCB7F /* Enemy_2.atlas */,
-				19D024CE244B2740007A5CD6 /* LaunchScreen.storyboard */,
-				19D024D1244B2740007A5CD6 /* Info.plist */,
+				19F8F686245213690028331D /* YellowAmmo.atlas */,
 			);
-			path = AirWar;
+			path = Atlases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +186,7 @@
 				194933A82451D17C00FFCB7F /* Enemy_2.atlas in Resources */,
 				19A26A8D2450D7600018B870 /* Enemy_1.atlas in Resources */,
 				19D024CB244B273D007A5CD6 /* Main.storyboard in Resources */,
+				19F8F687245213690028331D /* YellowAmmo.atlas in Resources */,
 				19C99286244FA2C900E8A397 /* GreenPowerUp.atlas in Resources */,
 				1900E9FD244DC69600EDCC99 /* PlayerPlane.atlas in Resources */,
 				19D024CD244B2740007A5CD6 /* Assets.xcassets in Resources */,
@@ -194,6 +209,7 @@
 				19D024C0244B273D007A5CD6 /* AppDelegate.swift in Sources */,
 				1900E9F9244D9ECA00EDCC99 /* Island.swift in Sources */,
 				19A26A8B2450D3BC0018B870 /* Enemy.swift in Sources */,
+				19ED47DF2452179000706A53 /* Shot.swift in Sources */,
 				1900E9FF244DC97100EDCC99 /* PayerPlane.swift in Sources */,
 				19388B5C244DE6270072CB4E /* GameBackgroundSpritable.swift in Sources */,
 				19D024D8244CE9BF007A5CD6 /* Background.swift in Sources */,

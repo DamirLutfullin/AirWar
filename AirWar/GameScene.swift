@@ -12,6 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player: PlayerPlane!
+    var shot: Shot!
     
     override func didMove(to view: SKView) {
         configureStartScene()
@@ -92,6 +93,10 @@ class GameScene: SKScene {
         run(spawnSequenceForever)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        playerFire()
+    }
+    
     override func didSimulatePhysics() {
         super.didSimulatePhysics()
         player.checkPosition()
@@ -101,5 +106,17 @@ class GameScene: SKScene {
                 node.removeFromParent()
             }
         }
+        
+        enumerateChildNodes(withName: "spriteShot") { (node, _) in
+            if node.position.y >= self.size.height + 100 {
+                node.removeFromParent()
+            }
+        }
+    }
+    
+    private func playerFire() {
+        let shot = Shot(at: player.position)
+        shot.startMovement()
+        self.addChild(shot)
     }
 }
