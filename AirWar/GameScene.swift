@@ -12,7 +12,6 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player: PlayerPlane!
-    let powerUp = PowerUp()
     
     override func didMove(to view: SKView) {
         configureStartScene()
@@ -25,7 +24,7 @@ class GameScene: SKScene {
     }
     
     fileprivate func spawnPowerUp() {
-        let powerUp = PowerUp()
+        let powerUp = PowerUp(type: .green)
         powerUp.performRotation()
         powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(powerUp)
