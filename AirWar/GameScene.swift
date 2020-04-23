@@ -24,10 +24,13 @@ class GameScene: SKScene {
     }
     
     fileprivate func spawnPowerUp() {
-        let powerUp = PowerUp(type: .green)
-        powerUp.performRotation()
-        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        self.addChild(powerUp)
+        let pause = SKAction.wait(forDuration: TimeInterval.random(in: 5.0 ... 10.0))
+        let addPowerUp = SKAction.run {
+            let powerUp = PowerUp(type: TypePowerUp.allCases.randomElement()!)
+            self.addChild(powerUp)
+        }
+        let sequence = SKAction.sequence([addPowerUp, pause])
+        run(SKAction.repeatForever(sequence))
     }
     
     private func spawnEminies(pause: Double) {
@@ -98,6 +101,5 @@ class GameScene: SKScene {
                 node.removeFromParent()
             }
         }
-        
     }
 }
