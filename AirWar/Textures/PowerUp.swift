@@ -28,7 +28,6 @@ class PowerUp: SKSpriteNode {
     func performRotation() {
         for texture in textureAtlas.textureNames.sorted() {
             animationSpriteArray.append(SKTexture(imageNamed: texture))
-            print(animationSpriteArray)
         }
         
         SKTexture.preload(animationSpriteArray) {

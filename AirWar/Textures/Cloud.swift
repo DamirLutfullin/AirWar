@@ -18,7 +18,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         cloud.position = point ?? randomPoint()
         cloud.zPosition = CGFloat(Int.random(in: 19...21))
         cloud.run(move(to: cloud.position))
-        cloud.name = "backgroundSprite"
+        cloud.name = "sprite"
         return cloud
     }
     

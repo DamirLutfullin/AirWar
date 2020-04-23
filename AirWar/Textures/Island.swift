@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 final class Island: SKSpriteNode, GameBackgroundSpritable {
-
+    
     static func getSprite(at point: CGPoint?) -> Island {
         let island = Island(imageNamed: "is" + String(Int.random(in: 1...4)))
         island.setScale(CGFloat.random(in: 0.3...1.0))
@@ -18,7 +18,7 @@ final class Island: SKSpriteNode, GameBackgroundSpritable {
         island.position = point ?? randomPoint()
         island.zPosition = 1
         island.run(move(to: island.position))
-        island.name = "backgroundSprite"
+        island.name = "sprite"
         return island
     }
     
