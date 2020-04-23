@@ -21,7 +21,7 @@ class PowerUp: SKSpriteNode {
     var animationSpriteArray: [SKTexture] = []
     
     init(type: TypePowerUp) {
-        self.textureAtlas = SKTextureAtlas(named: type.rawValue)
+        self.textureAtlas = type == .blue ?  Assets.shared.bluePowerUpAtlas : Assets.shared.greenPowerUpAtlas
         let textureName = textureAtlas.textureNames.sorted()[0]
         let texture = textureAtlas.textureNamed(textureName)
         super.init(texture: texture, color: .clear, size: initialSize)
@@ -38,10 +38,10 @@ class PowerUp: SKSpriteNode {
         
         self.position = CGPoint(x: xPosition, y: randomYPosition)
         self.run(SKAction.moveTo(y: -210, duration: 10))
-
+        
     }
     
-   private func performRotation() {
+    private func performRotation() {
         for texture in textureAtlas.textureNames.sorted() {
             animationSpriteArray.append(SKTexture(imageNamed: texture))
         }

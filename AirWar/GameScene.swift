@@ -22,6 +22,7 @@ class GameScene: SKScene {
         
         spawnPowerUp()
         spawnEminies(pause: 3)
+        
     }
     
     fileprivate func spawnPowerUp() {
@@ -45,8 +46,8 @@ class GameScene: SKScene {
     }
     
     fileprivate func spawnSpiralEnemies() {
-        let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
-        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+        let enemyTextureAtlas1 = Assets.shared.enemy_1Atlas
+        let enemyTextureAtlas2 = Assets.shared.enemy_2Atlas
         SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
             let randomNumber = Int.random(in: 0...1)
             let arrayOfAtases = [enemyTextureAtlas1, enemyTextureAtlas2]
@@ -95,19 +96,24 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         playerFire()
+        let pause = SKAction.wait(forDuration: 0.1)
+        let sequense = SKAction.sequence([pause, SKAction.run{self.playerFire()}])
+        run (
+            SKAction.repeatForever(sequense)
+        )
     }
-    
+
     override func didSimulatePhysics() {
-        super.didSimulatePhysics()
+        
         player.checkPosition()
         
-        enumerateChildNodes(withName: "sprite") { (node, _) in
-            if node.position.y < -190 {
+        enumerateChildNodes(withName: "sprite") { (node, stop) in
+            if node.position.y <= -200 {
                 node.removeFromParent()
             }
         }
         
-        enumerateChildNodes(withName: "spriteShot") { (node, _) in
+        enumerateChildNodes(withName: "shotSprite") { (node, stop) in
             if node.position.y >= self.size.height + 100 {
                 node.removeFromParent()
             }

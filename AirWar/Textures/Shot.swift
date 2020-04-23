@@ -15,11 +15,11 @@ class Shot: SKSpriteNode {
     let screen = UIScreen.main.bounds
     
     init(at point: CGPoint) {
-        self.textureAtlas = SKTextureAtlas(named: "YellowAmmo.atlas")
+        self.textureAtlas = Assets.shared.yellowShotAtlas
         let textureName = textureAtlas.textureNames.sorted()[0]
         let texture = textureAtlas.textureNamed(textureName)
         super.init(texture: texture, color: .clear, size: initialSize)
-        super.name = "spriteShot"
+        super.name = "shotSprite"
         self.zPosition = 19
         self.setScale(0.3)
         self.position = CGPoint(x: point.x, y: point.y)
