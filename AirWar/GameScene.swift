@@ -11,8 +11,9 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var player: PayerPlane!
+    var player: PlayerPlane!
     let powerUp = PowerUp()
+    let enemy = Enemy()
    
     override func didMove(to view: SKView) {
         configureStartScene()
@@ -24,13 +25,18 @@ class GameScene: SKScene {
         powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(powerUp)
         
+        enemy.texture?.preload { [unowned self] in
+            self.enemy.position = CGPoint( x: self.size.width / 2, y: self.size.height / 3 * 2)
+            self.addChild(self.enemy)
+        }
+        
     }
     
     func configureStartScene() {
         let background = Background.background(at: self.anchorPoint)
         background.size = self.size
         self.addChild(background)
-        player = PayerPlane.getSprite()
+        player = PlayerPlane.populate(at: CGPoint(x: self.size.width / 2, y: 100))
         self.addChild(player)
     }
     
