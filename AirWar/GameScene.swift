@@ -21,7 +21,7 @@ class GameScene: SKScene {
         player.performFly()
         
         spawnPowerUp()
-        spawnEnemy(count: 50)
+        spawnEminies(pause: 3)
     }
     
     fileprivate func spawnPowerUp() {
@@ -31,23 +31,37 @@ class GameScene: SKScene {
         self.addChild(powerUp)
     }
     
-    fileprivate func spawnEnemy(count: Int) {
-        let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
-        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
-            Enemy.textureAtlas = enemyTextureAtlas
+    private func spawnEminies(pause: Double) {
+        let pause = SKAction.wait(forDuration: pause)
+        let spawnSpiralAction = SKAction.run { [unowned self] in
+            self.spawnSpiralEnemies()
+        }
+        
+        let sequence = SKAction.sequence([spawnSpiralAction, pause])
+        run(SKAction.repeatForever(sequence))
+    }
+    
+    fileprivate func spawnSpiralEnemies() {
+        let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
+        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
+            let randomNumber = Int.random(in: 0...1)
+            let arrayOfAtases = [enemyTextureAtlas1, enemyTextureAtlas2]
+            let textureAtlas = arrayOfAtases[randomNumber]
             let waitAction = SKAction.wait(forDuration: 1.0)
-            let spawnEnemy = SKAction.run({
-                let enemy = Enemy()
+           
+            let spawnEnemy = SKAction.run({ [unowned self] in
+                let texture = textureAtlas.textureNames.sorted()[13]
+                let enemy = Enemy(enemyTexture: SKTexture(imageNamed: texture))
                 enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 110)
                 self.addChild(enemy)
                 enemy.flySpiral()
             })
             
             let spawnAction = SKAction.sequence([waitAction, spawnEnemy])
-            let repeatAction = SKAction.repeat(spawnAction, count: count)
+            let repeatAction = SKAction.repeat(spawnAction, count: 3)
             self.run(repeatAction)
         }
-        
     }
     
     func configureStartScene() {
