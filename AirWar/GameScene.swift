@@ -134,7 +134,7 @@ extension GameScene: SKPhysicsContactDelegate {
         switch contactCategory {
         case [.player, .enemy]: print("enemy vs player")
         case [.powerUp, .player]: print("powerUp vs player")
-        case [.shot, .enemy]: print("enemy vs player")
+        case [.shot, .enemy]: print("enemy vs shot")
         default:
             preconditionFailure("error")
         }
