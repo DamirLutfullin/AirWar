@@ -20,6 +20,27 @@ class Enemy: SKSpriteNode {
         self.yScale = -0.5
         self.zPosition = 20
         self.name = "sprite"
+
+        
+        let offsetX = self.frame.size.width * self.anchorPoint.x
+        let offsetY = self.frame.size.height * self.anchorPoint.y
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: 8 - offsetX, y: 69 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 50 - offsetX, y: 97 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 61 - offsetX, y: 97 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 106 - offsetX, y: 69 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 65 - offsetX, y: 47 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 74 - offsetX, y: 6 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 38 - offsetX, y: 4 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 46 - offsetX, y: 45 - offsetY), transform: .identity)
+        path.closeSubpath()
+        
+        
+        self.physicsBody = SKPhysicsBody(polygonFrom: path)
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.categoryBitMask = BitMaskCategory.enemy
+        self.physicsBody?.collisionBitMask = BitMaskCategory.shot | BitMaskCategory.player
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.shot | BitMaskCategory.player
     }
     
     func flySpiral() {

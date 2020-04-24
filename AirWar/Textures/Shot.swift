@@ -23,6 +23,26 @@ class Shot: SKSpriteNode {
         self.zPosition = 19
         self.setScale(0.3)
         self.position = CGPoint(x: point.x, y: point.y)
+        
+        let offsetX = self.frame.size.width * self.anchorPoint.x
+        let offsetY = self.frame.size.height * self.anchorPoint.y
+        
+        let path = CGMutablePath()
+        
+        path.move(to: CGPoint(x: 42 - offsetX, y: 113 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 54 - offsetX, y: 113 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 54 - offsetX, y: 86 - offsetY), transform: .identity)
+        path.addLine(to: CGPoint(x: 42 - offsetX, y: 86 - offsetY), transform: .identity)
+        
+        path.closeSubpath()
+        
+        self.physicsBody = SKPhysicsBody(polygonFrom: path)
+        
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.categoryBitMask = BitMaskCategory.shot
+        self.physicsBody?.collisionBitMask = BitMaskCategory.enemy
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.enemy
+        
     }
     
     func startMovement() {

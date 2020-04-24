@@ -15,6 +15,10 @@ class GameScene: SKScene {
     var shot: Shot!
     
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = .zero
+        
         configureStartScene()
         backGroundGenerate(object: Cloud.self, pause: 3)
         backGroundGenerate(object: Island.self, pause: 2)
@@ -96,11 +100,6 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         playerFire()
-        let pause = SKAction.wait(forDuration: 0.1)
-        let sequense = SKAction.sequence([pause, SKAction.run{self.playerFire()}])
-        run (
-            SKAction.repeatForever(sequense)
-        )
     }
 
     override func didSimulatePhysics() {
@@ -125,4 +124,19 @@ class GameScene: SKScene {
         shot.startMovement()
         self.addChild(shot)
     }
+    
+    var i = 0
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("contact detected: \(i) ")
+        i += 1
+    }
+
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+    }
+    
 }
