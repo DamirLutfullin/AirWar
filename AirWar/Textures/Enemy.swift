@@ -38,9 +38,9 @@ class Enemy: SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(polygonFrom: path)
         self.physicsBody?.isDynamic = true
-        self.physicsBody?.categoryBitMask = BitMaskCategory.enemy
-        self.physicsBody?.collisionBitMask = BitMaskCategory.shot | BitMaskCategory.player
-        self.physicsBody?.contactTestBitMask = BitMaskCategory.shot | BitMaskCategory.player
+        self.physicsBody?.categoryBitMask = BitMaskCategory.enemy.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.shot.rawValue | BitMaskCategory.player.rawValue
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.shot.rawValue | BitMaskCategory.player.rawValue
     }
     
     func flySpiral() {

@@ -111,12 +111,12 @@
 				19D024C5244B273D007A5CD6 /* GameScene.swift */,
 				1900EA00244DC9EF00EDCC99 /* Textures */,
 				19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */,
+				192F136D24525EC900FF3983 /* BitMaskCategory.swift */,
 				19D024C9244B273D007A5CD6 /* Main.storyboard */,
 				19D024CC244B2740007A5CD6 /* Assets.xcassets */,
 				19F8F6882452141A0028331D /* Atlases */,
 				19D024CE244B2740007A5CD6 /* LaunchScreen.storyboard */,
 				19D024D1244B2740007A5CD6 /* Info.plist */,
-				192F136D24525EC900FF3983 /* BitMaskCategory.swift */,
 			);
 			path = AirWar;
 			sourceTree = "<group>";

@@ -39,9 +39,9 @@ class Shot: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(polygonFrom: path)
         
         self.physicsBody?.isDynamic = false
-        self.physicsBody?.categoryBitMask = BitMaskCategory.shot
-        self.physicsBody?.collisionBitMask = BitMaskCategory.enemy
-        self.physicsBody?.contactTestBitMask = BitMaskCategory.enemy
+        self.physicsBody?.categoryBitMask = BitMaskCategory.shot.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue
         
     }
     
