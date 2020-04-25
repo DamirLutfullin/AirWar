@@ -13,6 +13,8 @@ class GameScene: SKScene {
     
     var player: PlayerPlane!
     var shot: Shot!
+    let hud = HUD()
+
     
     override func didMove(to view: SKView) {
         
@@ -22,13 +24,15 @@ class GameScene: SKScene {
         configureStartScene()
         backGroundGenerate(object: Cloud.self, pause: 3)
         backGroundGenerate(object: Island.self, pause: 2)
-        player.performFly()
         
+        player.performFly()
         spawnPowerUp()
         spawnEminies(pause: 3)
-        
+        addChild(hud)
+        hud.configureUI(screenSize: self.size)
     }
     
+   
     fileprivate func spawnPowerUp() {
         let pause = SKAction.wait(forDuration: TimeInterval.random(in: 5.0 ... 10.0))
         let addPowerUp = SKAction.run {
@@ -57,7 +61,7 @@ class GameScene: SKScene {
             let arrayOfAtases = [enemyTextureAtlas1, enemyTextureAtlas2]
             let textureAtlas = arrayOfAtases[randomNumber]
             let waitAction = SKAction.wait(forDuration: 1.0)
-           
+            
             let spawnEnemy = SKAction.run({ [unowned self] in
                 let texture = textureAtlas.textureNames.sorted()[13]
                 let enemy = Enemy(enemyTexture: SKTexture(imageNamed: texture))
@@ -71,6 +75,7 @@ class GameScene: SKScene {
             self.run(repeatAction)
         }
     }
+    
     
     func configureStartScene() {
         let background = Background.background(at: self.anchorPoint)
@@ -119,13 +124,13 @@ class GameScene: SKScene {
         }
     }
     
+    
     private func playerFire() {
         let shot = Shot(at: player.position)
         shot.startMovement()
         self.addChild(shot)
     }
     
-    var i = 0
 }
 
 extension GameScene: SKPhysicsContactDelegate {
@@ -139,6 +144,7 @@ extension GameScene: SKPhysicsContactDelegate {
             preconditionFailure("error")
         }
     }
+    
     func didEnd(_ contact: SKPhysicsContact) {
         
     }

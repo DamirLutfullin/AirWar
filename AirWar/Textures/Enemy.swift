@@ -56,7 +56,7 @@ class Enemy: SKSpriteNode {
         let asideMovementSequence = randomInt == 0 ? SKAction.sequence([moveLeft, moveRight]) : SKAction.sequence([moveRight, moveLeft])
         let foreverAsideMovement = SKAction.repeatForever(asideMovementSequence)
         
-        let forwardMovement = SKAction.moveTo(y: -200, duration: timeVertical)
+        let forwardMovement = SKAction.moveTo(y: -300, duration: timeVertical)
         let groupMovement = SKAction.group([foreverAsideMovement, forwardMovement])
         self.run(groupMovement)
     }
