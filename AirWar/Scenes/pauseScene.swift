@@ -8,7 +8,8 @@
 
 import SpriteKit
 
-class PauseScene: SKScene {
+class PauseScene: ParentScene {
+    
     override func didMove(to view: SKView) {
        // self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1)
         let background = Background(imageNamed: "camouflage")
@@ -23,11 +24,11 @@ class PauseScene: SKScene {
         header.zPosition = 1
         self.addChild(header)
         
-        let titles = ["restart", "settings", "resume"]
+        let titles = ["restart", "settings", "resume", "menu"]
         
         for (index, title) in titles.enumerated() {
             let button = ButtonNode(title: title, backgroundNamed: "button_background")
-            button.position = CGPoint(x: self.frame.midX,y: self.frame.midY - CGFloat(index + 1) * 100)
+            button.position = CGPoint(x: self.frame.midX,y: self.frame.midY - CGFloat(index * 100))
             button.zPosition = 1
             button.name = title
             button.label.name = title
@@ -54,6 +55,15 @@ class PauseScene: SKScene {
             self.scene?.view?.presentScene(scene, transition: transition)
         } else if node.name == "resume" {
             self.scene?.view?.presentScene(SceneManager.shared.scene!, transition: transition)
+        } else if node.name == "menu" {
+            let scene = MenuScene(size: self.size)
+            self.scene?.view?.presentScene(scene, transition: transition)
+        } else if node.name == "settings" {
+            let transition = SKTransition.crossFade(withDuration: 1)
+            let settingScene = SettingScene(size: self.size)
+            settingScene.scaleMode = .aspectFill
+            settingScene.backScene = self
+            self.scene?.view?.presentScene(settingScene, transition: transition)
         }
     }
 }

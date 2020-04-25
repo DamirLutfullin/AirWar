@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class MenuScene: SKScene {
+class MenuScene: ParentScene {
     override func didMove(to view: SKView) {
         self.scaleMode = .aspectFill
         if !Assets.shared.isLoaded {
@@ -23,12 +23,9 @@ class MenuScene: SKScene {
         
         self.addChild(background)
         
-        let header = SKSpriteNode(imageNamed: "header1")
-        header.position = CGPoint(x: self.frame.midX,y: self.frame.height - 150)
-        header.zPosition = 1
-        self.addChild(header)
+        setHeader(name: nil, background: "header1")
         
-        let titles = ["play", "best", "Settings"]
+        let titles = ["play", "best", "settings"]
         
         for (index, title) in titles.enumerated() {
             let button = ButtonNode(title: title, backgroundNamed: "button_background")
@@ -45,11 +42,17 @@ class MenuScene: SKScene {
         let location = touches.first?.location(in: self)
         let node = self.atPoint(location!)
         if node.name == "play" {
+            SceneManager.shared.scene = nil
             let transition = SKTransition.crossFade(withDuration: 1)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill
-            
             self.scene?.view?.presentScene(gameScene, transition: transition)
+        } else if node.name == "settings" {
+            let transition = SKTransition.crossFade(withDuration: 1)
+            let settingScene = SettingScene(size: self.size)
+            settingScene.scaleMode = .aspectFill
+            settingScene.backScene = self
+            self.scene?.view?.presentScene(settingScene, transition: transition)
         }
         
     }
