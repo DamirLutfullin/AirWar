@@ -10,13 +10,18 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
+
     var player: PlayerPlane!
     var shot: Shot!
     let hud = HUD()
 
     
     override func didMove(to view: SKView) {
+        
+        // checking if scene persists
+        guard SceneManager.shared.scene == nil else { return } // если наша сцена не существует, то мы создаем ее в этом методе, иначе выходим из этого метода
+        
+        SceneManager.shared.scene = self
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = .zero
@@ -104,19 +109,29 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let location = touches.first?.location(in: self)
+        let node = self.atPoint(location!)
+        if node.name == "menu" {
+            let transition = SKTransition.fade(withDuration: 1)
+            let gameScene = PauseScene(size: self.size)
+            gameScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(gameScene, transition: transition)
+        } else {
         playerFire()
+        }
     }
 
     override func didSimulatePhysics() {
-        
         player.checkPosition()
-        
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
         enumerateChildNodes(withName: "sprite") { (node, stop) in
             if node.position.y <= -200 {
                 node.removeFromParent()
             }
         }
-        
         enumerateChildNodes(withName: "shotSprite") { (node, stop) in
             if node.position.y >= self.size.height + 100 {
                 node.removeFromParent()
@@ -124,13 +139,11 @@ class GameScene: SKScene {
         }
     }
     
-    
     private func playerFire() {
         let shot = Shot(at: player.position)
         shot.startMovement()
         self.addChild(shot)
     }
-    
 }
 
 extension GameScene: SKPhysicsContactDelegate {
