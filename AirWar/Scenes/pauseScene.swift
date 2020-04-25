@@ -64,6 +64,6 @@ class PauseScene: ParentScene {
             settingScene.scaleMode = .aspectFill
             settingScene.backScene = self
             self.scene?.view?.presentScene(settingScene, transition: transition)
-        }
+        } 
     }
 }
