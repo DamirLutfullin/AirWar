@@ -17,6 +17,7 @@
 		194933A82451D17C00FFCB7F /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A72451D17C00FFCB7F /* Enemy_2.atlas */; };
 		194933AA2451E5C100FFCB7F /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A92451E5C100FFCB7F /* BluePowerUp.atlas */; };
 		1976855024546DAA000C5CAA /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1976854F24546DAA000C5CAA /* HUD.swift */; };
+		1979FEB02454770E00A3C67E /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1979FEAF2454770E00A3C67E /* ButtonNode.swift */; };
 		19A26A8B2450D3BC0018B870 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A26A8A2450D3BC0018B870 /* Enemy.swift */; };
 		19A26A8D2450D7600018B870 /* Enemy_1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19A26A8C2450D7600018B870 /* Enemy_1.atlas */; };
 		19C99286244FA2C900E8A397 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */; };
@@ -44,6 +45,7 @@
 		194933A72451D17C00FFCB7F /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		194933A92451E5C100FFCB7F /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
 		1976854F24546DAA000C5CAA /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		1979FEAF2454770E00A3C67E /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		19A26A8A2450D3BC0018B870 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		19A26A8C2450D7600018B870 /* Enemy_1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_1.atlas; sourceTree = "<group>"; };
 		19C99285244FA2C900E8A397 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
@@ -73,9 +75,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1900EA00244DC9EF00EDCC99 /* Textures */ = {
+		1900EA00244DC9EF00EDCC99 /* Clases */ = {
 			isa = PBXGroup;
 			children = (
+				1979FEAF2454770E00A3C67E /* ButtonNode.swift */,
 				1900E9FE244DC97100EDCC99 /* PayerPlane.swift */,
 				19A26A8A2450D3BC0018B870 /* Enemy.swift */,
 				19C99287244FA2F300E8A397 /* PowerUp.swift */,
@@ -84,7 +87,7 @@
 				19D024D7244CE9BF007A5CD6 /* Background.swift */,
 				19ED47DE2452179000706A53 /* Shot.swift */,
 			);
-			path = Textures;
+			path = Clases;
 			sourceTree = "<group>";
 		};
 		19768551245470EA000C5CAA /* SupportingFiles */ = {
@@ -173,7 +176,7 @@
 				1976855324547131000C5CAA /* Helpers */,
 				197685522454710C000C5CAA /* Storyboards */,
 				19768551245470EA000C5CAA /* SupportingFiles */,
-				1900EA00244DC9EF00EDCC99 /* Textures */,
+				1900EA00244DC9EF00EDCC99 /* Clases */,
 				19D024CC244B2740007A5CD6 /* Assets.xcassets */,
 				19F8F6882452141A0028331D /* Atlases */,
 			);
@@ -283,6 +286,7 @@
 				19A26A8B2450D3BC0018B870 /* Enemy.swift in Sources */,
 				19ED47DF2452179000706A53 /* Shot.swift in Sources */,
 				1900E9FF244DC97100EDCC99 /* PayerPlane.swift in Sources */,
+				1979FEB02454770E00A3C67E /* ButtonNode.swift in Sources */,
 				19388B5C244DE6270072CB4E /* GameBackgroundSpritable.swift in Sources */,
 				19D024D8244CE9BF007A5CD6 /* Background.swift in Sources */,
 			);
@@ -430,7 +434,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQU76263MV;
-				INFOPLIST_FILE = AirWar/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AirWar/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,7 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQU76263MV;
-				INFOPLIST_FILE = AirWar/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AirWar/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
