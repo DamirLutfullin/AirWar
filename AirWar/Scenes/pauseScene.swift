@@ -33,7 +33,14 @@ class PauseScene: SKScene {
             button.label.name = title
             addChild(button)
         }
-        
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if let gameScene = SceneManager.shared.scene {
+            if !gameScene.isPaused {
+                gameScene.isPaused = true
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

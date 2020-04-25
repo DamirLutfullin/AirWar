@@ -15,9 +15,8 @@ class GameScene: SKScene {
     var shot: Shot!
     let hud = HUD()
 
-    
     override func didMove(to view: SKView) {
-        
+        self.scene?.isPaused = false
         // checking if scene persists
         guard SceneManager.shared.scene == nil else { return } // если наша сцена не существует, то мы создаем ее в этом методе, иначе выходим из этого метода
         
@@ -112,17 +111,20 @@ class GameScene: SKScene {
         let location = touches.first?.location(in: self)
         let node = self.atPoint(location!)
         if node.name == "menu" {
+            self.scene?.isPaused = true
+            SceneManager.shared.scene = self
             let transition = SKTransition.fade(withDuration: 1)
-            let gameScene = PauseScene(size: self.size)
-            gameScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(gameScene, transition: transition)
+            let menuScene = PauseScene(size: self.size)
+            menuScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(menuScene, transition: transition)
         } else {
-        playerFire()
+            playerFire()
         }
     }
 
     override func didSimulatePhysics() {
         player.checkPosition()
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
