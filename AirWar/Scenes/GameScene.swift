@@ -151,10 +151,30 @@ class GameScene: ParentScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
+        let explosion = SKEmitterNode(fileNamed: "EnemyExplosion.sks")
+        explosion?.position = contact.contactPoint
+        let waitForExplosion = SKAction.wait(forDuration: 1)
+        
         switch contactCategory {
-        case [.player, .enemy]: print("enemy vs player")
-        case [.powerUp, .player]: print("powerUp vs player")
-        case [.shot, .enemy]: print("enemy vs shot")
+        case [.player, .enemy]:
+            if contact.bodyA.node?.name == "sprite" {
+                contact.bodyA.node?.removeFromParent()
+            } else {
+                contact.bodyB.node?.removeFromParent()
+            }
+            addChild(explosion!)
+            self.run(waitForExplosion) {
+                explosion?.removeFromParent()
+            }
+        case [.powerUp, .player]:
+            print("powerUp vs player")
+        case [.shot, .enemy]:
+            contact.bodyA.node?.removeFromParent()
+            contact.bodyB.node?.removeFromParent()
+            addChild(explosion!)
+            self.run(waitForExplosion) {
+                explosion?.removeFromParent()
+            }
         default:
             preconditionFailure("error")
         }

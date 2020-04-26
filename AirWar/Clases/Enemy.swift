@@ -39,7 +39,7 @@ class Enemy: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(polygonFrom: path)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = BitMaskCategory.enemy.rawValue
-        self.physicsBody?.collisionBitMask = BitMaskCategory.shot.rawValue | BitMaskCategory.player.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.none.rawValue
         self.physicsBody?.contactTestBitMask = BitMaskCategory.shot.rawValue | BitMaskCategory.player.rawValue
     }
     
