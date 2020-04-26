@@ -108,7 +108,7 @@ class GameScene: ParentScene {
         let background = Background.background(at: self.anchorPoint)
         background.size = self.size
         self.addChild(background)
-        player = PlayerPlane.populate(at: CGPoint(x: self.size.width / 2, y: 100))
+        player = PlayerPlane.populate(at: CGPoint(x: self.size.width / 3, y: 100))
         self.addChild(player)
     }
     
@@ -176,25 +176,46 @@ extension GameScene: SKPhysicsContactDelegate {
         let explosion = SKEmitterNode(fileNamed: "EnemyExplosion.sks")
         explosion?.zPosition = 25
         explosion?.position = contact.contactPoint
+        let explosion2 = SKEmitterNode(fileNamed: "EnemyExplosion.sks")
+        explosion2?.zPosition = 25
+        explosion2?.position = contact.contactPoint
+        explosion2?.setScale(3)
         let waitForExplosion = SKAction.wait(forDuration: 1)
         
         switch contactCategory {
         case [.player, .enemy]:
-            if contact.bodyA.node?.name == "sprite" {
+            if lives == 0 {
                 if contact.bodyA.node?.parent != nil {
                     contact.bodyA.node?.removeFromParent()
-                    lives -= 1
                 }
-            } else {
                 if contact.bodyB.node?.parent != nil {
                     contact.bodyB.node?.removeFromParent()
-                    lives -= 1
+                }
+                addChild(explosion2!)
+                self.run(waitForExplosion) {
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    let gameOverScene = GameOverScene(size: self.size)
+                    gameOverScene.scaleMode = .aspectFill
+                    self.scene?.view?.presentScene(gameOverScene, transition: transition)
+                }
+            } else {
+                if contact.bodyA.node?.name == "sprite" {
+                    if contact.bodyA.node?.parent != nil {
+                        contact.bodyA.node?.removeFromParent()
+                        lives -= 1
+                    }
+                } else {
+                    if contact.bodyB.node?.parent != nil {
+                        contact.bodyB.node?.removeFromParent()
+                        lives -= 1
+                    }
+                }
+                addChild(explosion!)
+                self.run(waitForExplosion) {
+                    explosion?.removeFromParent()
                 }
             }
-            addChild(explosion!)
-            self.run(waitForExplosion) {
-                explosion?.removeFromParent()
-            }
+            
         case [.powerUp, .player]:
             print("powerUp vs player")
         case [.shot, .enemy]:

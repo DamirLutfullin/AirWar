@@ -14,6 +14,7 @@
 		192F13662452532A00FF3983 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192F13652452532A00FF3983 /* MenuScene.swift */; };
 		192F136E24525EC900FF3983 /* BitMaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192F136D24525EC900FF3983 /* BitMaskCategory.swift */; };
 		19388B5C244DE6270072CB4E /* GameBackgroundSpritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */; };
+		193E41D52455BF200075771F /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193E41D42455BF200075771F /* GameOverScene.swift */; };
 		194933A82451D17C00FFCB7F /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A72451D17C00FFCB7F /* Enemy_2.atlas */; };
 		194933AA2451E5C100FFCB7F /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A92451E5C100FFCB7F /* BluePowerUp.atlas */; };
 		1976855024546DAA000C5CAA /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1976854F24546DAA000C5CAA /* HUD.swift */; };
@@ -48,6 +49,7 @@
 		192F13652452532A00FF3983 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		192F136D24525EC900FF3983 /* BitMaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskCategory.swift; sourceTree = "<group>"; };
 		19388B5B244DE6270072CB4E /* GameBackgroundSpritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundSpritable.swift; sourceTree = "<group>"; };
+		193E41D42455BF200075771F /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		194933A72451D17C00FFCB7F /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		194933A92451E5C100FFCB7F /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
 		1976854F24546DAA000C5CAA /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				19D024C5244B273D007A5CD6 /* GameScene.swift */,
 				19CFA2732454E9B5006C4ACB /* SettingScene.swift */,
 				19CFA2752454F267006C4ACB /* BestScene.swift */,
+				193E41D42455BF200075771F /* GameOverScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				19D024C6244B273D007A5CD6 /* GameScene.swift in Sources */,
 				1900E9FB244DB8F100EDCC99 /* Cloud.swift in Sources */,
+				193E41D52455BF200075771F /* GameOverScene.swift in Sources */,
 				19ED47E12452282300706A53 /* Assets.swift in Sources */,
 				19CFA2722454E1C1006C4ACB /* ParentScene.swift in Sources */,
 				192F136E24525EC900FF3983 /* BitMaskCategory.swift in Sources */,
