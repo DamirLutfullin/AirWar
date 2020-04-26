@@ -152,6 +152,7 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
         let explosion = SKEmitterNode(fileNamed: "EnemyExplosion.sks")
+        explosion?.zPosition = 25
         explosion?.position = contact.contactPoint
         let waitForExplosion = SKAction.wait(forDuration: 1)
         
