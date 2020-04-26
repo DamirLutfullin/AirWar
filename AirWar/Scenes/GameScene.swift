@@ -14,6 +14,30 @@ class GameScene: ParentScene {
     var player: PlayerPlane!
     var shot: Shot!
     let hud = HUD()
+    var lives = 3 {
+        didSet{
+            switch lives {
+            case 3:
+                hud.life3.isHidden = false
+                hud.life2.isHidden = false
+                hud.life1.isHidden = false
+            case 2:
+                hud.life3.isHidden = true
+                hud.life2.isHidden = false
+                hud.life1.isHidden = false
+            case 1:
+                hud.life3.isHidden = true
+                hud.life2.isHidden = true
+                hud.life1.isHidden = false
+            case 0:
+            hud.life3.isHidden = true
+            hud.life2.isHidden = true
+            hud.life1.isHidden = true
+            default:
+                break
+            }
+        }
+    }
 
     override func didMove(to view: SKView) {
         self.scene?.isPaused = false
@@ -80,7 +104,6 @@ class GameScene: ParentScene {
         }
     }
     
-    
     func configureStartScene() {
         let background = Background.background(at: self.anchorPoint)
         background.size = self.size
@@ -90,7 +113,6 @@ class GameScene: ParentScene {
     }
     
     func backGroundGenerate(object: GameBackgroundSpritable.Type, pause: Int) {
-        
         let pause = SKAction.wait(forDuration: TimeInterval(pause))
         let spawnObjects = SKAction.run {
             if object is Cloud.Type {
@@ -159,9 +181,15 @@ extension GameScene: SKPhysicsContactDelegate {
         switch contactCategory {
         case [.player, .enemy]:
             if contact.bodyA.node?.name == "sprite" {
-                contact.bodyA.node?.removeFromParent()
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    lives -= 1
+                }
             } else {
-                contact.bodyB.node?.removeFromParent()
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    lives -= 1
+                }
             }
             addChild(explosion!)
             self.run(waitForExplosion) {
@@ -170,8 +198,12 @@ extension GameScene: SKPhysicsContactDelegate {
         case [.powerUp, .player]:
             print("powerUp vs player")
         case [.shot, .enemy]:
-            contact.bodyA.node?.removeFromParent()
-            contact.bodyB.node?.removeFromParent()
+            if contact.bodyA.node?.parent != nil {
+                contact.bodyA.node?.removeFromParent()
+            }
+            if contact.bodyB.node?.parent != nil {
+                contact.bodyB.node?.removeFromParent()
+            }
             addChild(explosion!)
             self.run(waitForExplosion) {
                 explosion?.removeFromParent()
