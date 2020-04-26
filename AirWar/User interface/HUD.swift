@@ -18,7 +18,7 @@ class HUD: SKNode {
     
     let menuButton = SKSpriteNode(imageNamed: "menu")
     let scoreBackground = SKSpriteNode(imageNamed: "scores")
-    let scoresLabel = SKLabelNode(text: "1000")
+    let scoresLabel = SKLabelNode(text: "0")
     
     func configureUI(screenSize : CGSize) {
         scoreBackground.anchorPoint = CGPoint(x: 0, y: 1)

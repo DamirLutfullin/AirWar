@@ -16,6 +16,7 @@ enum TypePowerUp: String, CaseIterable {
 
 class PowerUp: SKSpriteNode {
     
+    let type: TypePowerUp
     let initialSize = CGSize(width: 52, height: 52)
     let textureAtlas : SKTextureAtlas!
     var animationSpriteArray: [SKTexture] = []
@@ -24,6 +25,7 @@ class PowerUp: SKSpriteNode {
         self.textureAtlas = type == .blue ?  Assets.shared.bluePowerUpAtlas : Assets.shared.greenPowerUpAtlas
         let textureName = textureAtlas.textureNames.sorted()[0]
         let texture = textureAtlas.textureNamed(textureName)
+        self.type = type
         super.init(texture: texture, color: .clear, size: initialSize)
         super.name = "sprite"
         self.zPosition = 20
@@ -41,7 +43,7 @@ class PowerUp: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(polygonFrom: path)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = BitMaskCategory.powerUp.rawValue
-        self.physicsBody?.collisionBitMask = BitMaskCategory.player.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.none.rawValue
         self.physicsBody?.contactTestBitMask = BitMaskCategory.player.rawValue
         
         self.startMovement()

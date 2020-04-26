@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: ParentScene {
-
+    
     var player: PlayerPlane!
     var shot: Shot!
     let hud = HUD()
@@ -30,15 +30,20 @@ class GameScene: ParentScene {
                 hud.life2.isHidden = true
                 hud.life1.isHidden = false
             case 0:
-            hud.life3.isHidden = true
-            hud.life2.isHidden = true
-            hud.life1.isHidden = true
+                hud.life3.isHidden = true
+                hud.life2.isHidden = true
+                hud.life1.isHidden = true
             default:
                 break
             }
         }
     }
-
+    var scores = 0 {
+        didSet {
+            hud.scoresLabel.text = scores.description
+        }
+    }
+    
     override func didMove(to view: SKView) {
         self.scene?.isPaused = false
         // checking if scene persists
@@ -60,7 +65,7 @@ class GameScene: ParentScene {
         hud.configureUI(screenSize: self.size)
     }
     
-   
+    
     fileprivate func spawnPowerUp() {
         let pause = SKAction.wait(forDuration: TimeInterval.random(in: 5.0 ... 10.0))
         let addPowerUp = SKAction.run {
@@ -143,7 +148,7 @@ class GameScene: ParentScene {
             playerFire()
         }
     }
-
+    
     override func didSimulatePhysics() {
         player.checkPosition()
         
@@ -208,6 +213,7 @@ extension GameScene: SKPhysicsContactDelegate {
                     if contact.bodyB.node?.parent != nil {
                         contact.bodyB.node?.removeFromParent()
                         lives -= 1
+                        scores += 5
                     }
                 }
                 addChild(explosion!)
@@ -217,17 +223,42 @@ extension GameScene: SKPhysicsContactDelegate {
             }
             
         case [.powerUp, .player]:
-            print("powerUp vs player")
+            if let powerUp = contact.bodyA.node as? PowerUp {
+                if contact.bodyA.node?.parent != nil {
+                    if powerUp.type == .blue {
+                        lives += lives < 3 ? 1 : 0
+                        player.bluePowerUp()
+                    }
+                    else {
+                        lives = 3
+                        player.greenPowerUp()
+                    }
+                    contact.bodyA.node?.removeFromParent()
+                    
+                }
+            } else if let powerUp = contact.bodyB.node as? PowerUp {
+                if contact.bodyB.node?.parent != nil {
+                    if powerUp.type == .blue {
+                        lives += lives < 3 ? 1 : 0
+                        player.bluePowerUp()
+                    }
+                    else {
+                        lives = 3
+                        player.greenPowerUp()
+                    }
+                    contact.bodyB.node?.removeFromParent()
+                }
+            }
+            
         case [.shot, .enemy]:
             if contact.bodyA.node?.parent != nil {
                 contact.bodyA.node?.removeFromParent()
-            }
-            if contact.bodyB.node?.parent != nil {
                 contact.bodyB.node?.removeFromParent()
-            }
-            addChild(explosion!)
-            self.run(waitForExplosion) {
-                explosion?.removeFromParent()
+                scores += 5
+                addChild(explosion!)
+                self.run(waitForExplosion) {
+                    explosion?.removeFromParent()
+                }
             }
         default:
             preconditionFailure("error")
