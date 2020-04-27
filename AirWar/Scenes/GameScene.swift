@@ -56,7 +56,7 @@ class GameScene: ParentScene {
                 addChild(backGroundMusic)
             }
         }
-            
+        
         self.scene?.isPaused = false
         // checking if scene persists
         guard SceneManager.shared.scene == nil else { return } // если наша сцена не существует, то мы создаем ее в этом методе, иначе выходим из этого метода
@@ -201,70 +201,70 @@ extension GameScene: SKPhysicsContactDelegate {
         
         switch contactCategory {
         case [.player, .enemy]:
-                if contact.bodyA.node?.name == "sprite" {
-                    if contact.bodyA.node?.parent != nil {
-                        contact.bodyA.node?.removeFromParent()
-                        lives -= 1
-                        scores += 5
-                        if lives == 0 {
-                                     if contact.bodyA.node?.parent != nil {
-                                         contact.bodyA.node?.removeFromParent()
-                                         addChild(explosion2!)
-                                         self.run(waitForExplosion) {
-                                             print("умер")
-                                             self.gameSettings.currentScore = self.scores
-                                             self.gameSettings.saveScores()
-                                             let transition = SKTransition.crossFade(withDuration: 1)
-                                             let gameOverScene = GameOverScene(size: self.size)
-                                             gameOverScene.scaleMode = .aspectFill
-                                             self.scene?.view?.presentScene(gameOverScene, transition: transition)
-                                         }
-                                     }
-                                     if contact.bodyB.node?.parent != nil {
-                                         contact.bodyB.node?.removeFromParent()
-                                     }
-                                     
-                                 }
-                        else {
-                            addChild(explosion!)
+            if contact.bodyA.node?.name == "sprite" {
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    lives -= 1
+                    scores += 5
+                    if lives == 0 {
+                        if contact.bodyA.node?.parent != nil {
+                            contact.bodyA.node?.removeFromParent()
+                            addChild(explosion2!)
                             self.run(waitForExplosion) {
-                                explosion?.removeFromParent()
+                                print("умер")
+                                self.gameSettings.currentScore = self.scores
+                                self.gameSettings.saveScores()
+                                let transition = SKTransition.crossFade(withDuration: 1)
+                                let gameOverScene = GameOverScene(size: self.size)
+                                gameOverScene.scaleMode = .aspectFill
+                                self.scene?.view?.presentScene(gameOverScene, transition: transition)
                             }
                         }
+                        if contact.bodyB.node?.parent != nil {
+                            contact.bodyB.node?.removeFromParent()
+                        }
+                        
                     }
-                } else {
-                    if contact.bodyB.node?.parent != nil {
-                        contact.bodyB.node?.removeFromParent()
-                        lives -= 1
-                        scores += 5
-                        if lives == 0 {
-                                     if contact.bodyA.node?.parent != nil {
-                                         contact.bodyA.node?.removeFromParent()
-                                         addChild(explosion2!)
-                                         self.run(waitForExplosion) {
-                                             print("умер")
-                                             self.gameSettings.currentScore = self.scores
-                                             self.gameSettings.saveScores()
-                                             let transition = SKTransition.crossFade(withDuration: 1)
-                                             let gameOverScene = GameOverScene(size: self.size)
-                                             gameOverScene.scaleMode = .aspectFill
-                                             self.scene?.view?.presentScene(gameOverScene, transition: transition)
-                                         }
-                                     }
-                                     if contact.bodyB.node?.parent != nil {
-                                         contact.bodyB.node?.removeFromParent()
-                                     }
-                                     
-                                 }
-                        else {
-                            addChild(explosion!)
-                            self.run(waitForExplosion) {
-                                explosion?.removeFromParent()
-                            }
+                    else {
+                        addChild(explosion!)
+                        self.run(waitForExplosion) {
+                            explosion?.removeFromParent()
                         }
                     }
                 }
-                
+            } else {
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    lives -= 1
+                    scores += 5
+                    if lives == 0 {
+                        if contact.bodyA.node?.parent != nil {
+                            contact.bodyA.node?.removeFromParent()
+                            addChild(explosion2!)
+                            self.run(waitForExplosion) {
+                                print("умер")
+                                self.gameSettings.currentScore = self.scores
+                                self.gameSettings.saveScores()
+                                let transition = SKTransition.crossFade(withDuration: 1)
+                                let gameOverScene = GameOverScene(size: self.size)
+                                gameOverScene.scaleMode = .aspectFill
+                                self.scene?.view?.presentScene(gameOverScene, transition: transition)
+                            }
+                        }
+                        if contact.bodyB.node?.parent != nil {
+                            contact.bodyB.node?.removeFromParent()
+                        }
+                        
+                    }
+                    else {
+                        addChild(explosion!)
+                        self.run(waitForExplosion) {
+                            explosion?.removeFromParent()
+                        }
+                    }
+                }
+            }
+            
         case [.powerUp, .player]:
             if let powerUp = contact.bodyA.node as? PowerUp {
                 if contact.bodyA.node?.parent != nil {
