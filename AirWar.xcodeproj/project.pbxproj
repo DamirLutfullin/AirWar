@@ -17,6 +17,7 @@
 		193E41D52455BF200075771F /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193E41D42455BF200075771F /* GameOverScene.swift */; };
 		193E41D724560E420075771F /* backgroundMusic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 193E41D624560E420075771F /* backgroundMusic.m4a */; };
 		193E41D924560E520075771F /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 193E41D824560E520075771F /* hitSound.wav */; };
+		193E41DD245772850075771F /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193E41DC245772850075771F /* GameSettings.swift */; };
 		194933A82451D17C00FFCB7F /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A72451D17C00FFCB7F /* Enemy_2.atlas */; };
 		194933AA2451E5C100FFCB7F /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 194933A92451E5C100FFCB7F /* BluePowerUp.atlas */; };
 		1976855024546DAA000C5CAA /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1976854F24546DAA000C5CAA /* HUD.swift */; };
@@ -54,6 +55,7 @@
 		193E41D42455BF200075771F /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		193E41D624560E420075771F /* backgroundMusic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundMusic.m4a; sourceTree = "<group>"; };
 		193E41D824560E520075771F /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
+		193E41DC245772850075771F /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		194933A72451D17C00FFCB7F /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		194933A92451E5C100FFCB7F /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
 		1976854F24546DAA000C5CAA /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				19ED47E02452282300706A53 /* Assets.swift */,
 				192F136D24525EC900FF3983 /* BitMaskCategory.swift */,
 				19CFA26F24549233006C4ACB /* ScaneManager.swift */,
+				193E41DC245772850075771F /* GameSettings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				19ED47DF2452179000706A53 /* Shot.swift in Sources */,
 				1900E9FF244DC97100EDCC99 /* PayerPlane.swift in Sources */,
 				1979FEB02454770E00A3C67E /* ButtonNode.swift in Sources */,
+				193E41DD245772850075771F /* GameSettings.swift in Sources */,
 				19388B5C244DE6270072CB4E /* GameBackgroundSpritable.swift in Sources */,
 				19D024D8244CE9BF007A5CD6 /* Background.swift in Sources */,
 				19CFA2762454F267006C4ACB /* BestScene.swift in Sources */,

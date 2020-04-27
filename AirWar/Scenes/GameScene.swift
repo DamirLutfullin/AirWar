@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
+    var backGroundMusic : SKAudioNode!
+    
     var player: PlayerPlane!
     var shot: Shot!
     let hud = HUD()
@@ -45,6 +47,16 @@ class GameScene: ParentScene {
     }
     
     override func didMove(to view: SKView) {
+        
+        gameSettings.loadSettings()
+        
+        if gameSettings.isMusic && backGroundMusic == nil {
+            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+                backGroundMusic = SKAudioNode.init(url: musicURL)
+                addChild(backGroundMusic)
+            }
+        }
+            
         self.scene?.isPaused = false
         // checking if scene persists
         guard SceneManager.shared.scene == nil else { return } // если наша сцена не существует, то мы создаем ее в этом методе, иначе выходим из этого метода
@@ -254,6 +266,9 @@ extension GameScene: SKPhysicsContactDelegate {
             if contact.bodyA.node?.parent != nil {
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
+                if gameSettings.isSounds {
+                    self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
+                }
                 scores += 5
                 addChild(explosion!)
                 self.run(waitForExplosion) {

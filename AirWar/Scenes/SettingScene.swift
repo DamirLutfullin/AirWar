@@ -10,7 +10,16 @@ import SpriteKit
 
 class SettingScene: ParentScene {
     
+    var isMusic : Bool!
+    var isSounds : Bool!
+    
     override func didMove(to view: SKView) {
+            
+        isMusic = gameSettings.isMusic
+        isSounds = gameSettings.isSounds
+        
+        let backgroundForMusic = isMusic == true ? "music" : "nomusic"
+        let backgroundForSounds = isSounds == true ? "sound" : "nosound"
         
            let background = Background(imageNamed: "camouflage")
            background.zPosition = 0
@@ -21,13 +30,13 @@ class SettingScene: ParentScene {
            
            setHeader(name: "setting", background: "header_background")
            
-           let buttonMusic = ButtonNode(title: "", backgroundNamed: "music")
+           let buttonMusic = ButtonNode(title: "", backgroundNamed: backgroundForMusic)
            buttonMusic.position = CGPoint(x: self.frame.midX - 50,y: self.frame.midY)
            buttonMusic.zPosition = 1
            buttonMusic.name = "music"
            addChild(buttonMusic)
            
-           let buttonSound = ButtonNode(title: "", backgroundNamed: "sound")
+           let buttonSound = ButtonNode(title: "", backgroundNamed: backgroundForSounds)
            buttonSound.position = CGPoint(x: self.frame.midX + 50,y: self.frame.midY)
            buttonSound.zPosition = 1
            buttonSound.name = "sound"
@@ -37,20 +46,31 @@ class SettingScene: ParentScene {
             backButton.position = CGPoint(x: self.frame.midX,y: self.frame.midY - 150)
             backButton.zPosition = 1
             backButton.name = "back"
-            backButton.label.name = "back"
-            addChild(backButton)
-       }
+        backButton.label.name = "back"
+        addChild(backButton)
+    }
     
-       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-           let location = touches.first?.location(in: self)
-           let node = self.atPoint(location!)
-           let transition = SKTransition.crossFade(withDuration: 1)
-           if node.name == "sound" {
-            print("sound")
-           } else if node.name == "music" {
-              print("music")
-           } else if node.name == "back" {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let location = touches.first?.location(in: self)
+        let node = self.atPoint(location!)
+        let transition = SKTransition.crossFade(withDuration: 1)
+        if node.name == "music" {
+            isMusic = !isMusic
+            update(node: node as! SKSpriteNode, property: isMusic)
+        } else if node.name == "sound" {
+            isSounds = !isSounds
+            update(node: node as! SKSpriteNode, property: isSounds)
+        } else if node.name == "back" {
+            gameSettings.isSounds = isSounds
+            gameSettings.isMusic = isMusic
+            gameSettings.saveSettings()
             self.scene?.view?.presentScene(backScene!, transition: transition)
-           }
-       }
+        }
+    }
+    
+    func update(node: SKSpriteNode, property: Bool) {
+        if let name = node.name {
+            node.texture = property ? SKTexture(imageNamed: name) : SKTexture(imageNamed: "no" + name)
+        }
+    }
 }
