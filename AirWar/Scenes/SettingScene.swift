@@ -64,6 +64,12 @@ class SettingScene: ParentScene {
             gameSettings.isSounds = isSounds
             gameSettings.isMusic = isMusic
             gameSettings.saveSettings()
+            if (backScene as? PauseScene) != nil  {
+                if !isMusic {
+                    print("музыка должна выключиться")
+                    SceneManager.shared.scene?.backGroundMusic.removeFromParent()
+                }
+            }
             self.scene?.view?.presentScene(backScene!, transition: transition)
         }
     }
