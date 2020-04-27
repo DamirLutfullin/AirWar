@@ -10,9 +10,12 @@ import SpriteKit
 
 class BestScene: ParentScene {
     
+    var scores: [Int]!
+    
     override func didMove(to view: SKView) {
+        gameSettings.loadScores()
         
-        var scores = [100, 10, 1000]
+        scores = gameSettings.higthScores
         
         let background = Background(imageNamed: "camouflage")
         background.zPosition = 0
@@ -30,7 +33,7 @@ class BestScene: ParentScene {
         addChild(backButton)
         
         
-        for (index, value) in scores.sorted(by: >).enumerated().prefix(3) {
+        for (index, value) in scores.enumerated() {
             let label = SKLabelNode()
             label.text = value.description
             label.fontColor = SKColor(red: 219/255, green: 226/255, blue: 215/255, alpha: 1)
